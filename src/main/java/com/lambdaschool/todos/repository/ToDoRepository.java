@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ToDoRepository extends CrudRepository<Todo,Long> {
 
-    Todo findTodoByDescription(String description);
+   //Todo findTodoByDescription(String description);
 
 
 

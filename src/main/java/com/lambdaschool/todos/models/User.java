@@ -5,22 +5,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 //User is considered the parent entity
 
 @Entity
+//@EnableTransactionManagement
+//@Access(AccessType.PROPERTY)
 @Table(name="users")
 public class User extends Auditable {
 
@@ -61,6 +57,8 @@ public class User extends Auditable {
         }
         this.userRoles=userRoles;
     }
+
+
 
     public long getUserid() {
         return userid;

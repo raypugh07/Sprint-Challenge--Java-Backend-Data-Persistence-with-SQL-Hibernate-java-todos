@@ -3,15 +3,9 @@ package com.lambdaschool.todos.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -20,18 +14,22 @@ import java.util.Date;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity
-@Table(name="todos")
+//@EnableTransactionManagement
+//@Access(AccessType.PROPERTY)
+@Table(name = "todos")
 
 public class Todo extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private long todoid;
 
+    @Column(nullable = false)
     private String todo;
 
-   private String datestarted;
-  private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datestarted);
+    private String datestarted;
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datestarted);
 
 
     private Boolean completed;
@@ -40,6 +38,7 @@ public class Todo extends Auditable {
     @JoinColumn(name = "userid",
             nullable = false)
     @JsonIgnoreProperties({"todos", "hibernateLazyInitializer"})
+    @NotNull
     private User user;
 
     public Todo() {
@@ -50,7 +49,7 @@ public class Todo extends Auditable {
         this.datestarted = datestarted;
         this.completed = completed;
         this.user = user;
-        this.simpleDateFormat=simpleDateFormat;
+        this.simpleDateFormat = simpleDateFormat;
     }
 
     public SimpleDateFormat getSimpleDateFormat() {

@@ -18,11 +18,14 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 abstract class Auditable {
     @CreatedBy
     protected String createdBy;
+
     @CreatedDate
             @Temporal(TIMESTAMP)
     protected Date createdDate;
+
     @LastModifiedBy
     protected String lastModifiedBy;
+
     @LastModifiedDate
             @Temporal(TIMESTAMP)
     protected Date lastModifiedDate;
