@@ -1,8 +1,8 @@
-package com.lambdaschool.todos.controllers;
+package com.testing.test.controllers;
 
 
-import com.lambdaschool.todos.models.User;
-import com.lambdaschool.todos.services.UserService;
+import com.testing.test.models.User;
+import com.testing.test.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -70,19 +70,19 @@ public class UserController
     }
 
 
-    @PutMapping(value = "/user/{userid}")
-    public ResponseEntity<?> updateUser(@RequestBody User updateUser, @PathVariable long userid)
+    @PutMapping(value = "/user/{id}")
+    public ResponseEntity<?> updateUser(@RequestBody User updateUser, @PathVariable long id)
     {
-        userService.update(updateUser, userid);
+        userService.update(updateUser, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @DeleteMapping("/user/{userid}")
-    public ResponseEntity<?> deleteUserById(@PathVariable long userid)
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable long id)
     {
-        userService.delete(userid);
+        userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

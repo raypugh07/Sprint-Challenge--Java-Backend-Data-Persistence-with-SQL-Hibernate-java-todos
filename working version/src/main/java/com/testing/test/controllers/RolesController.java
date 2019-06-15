@@ -1,8 +1,8 @@
-package com.lambdaschool.todos.controllers;
+package com.testing.test.controllers;
 
 
-import com.lambdaschool.todos.models.Role;
-import com.lambdaschool.todos.services.RoleService;
+import com.testing.test.models.Role;
+import com.testing.test.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -56,10 +56,10 @@ public class RolesController
     }
 
 
-    @DeleteMapping("/role/{roleid}")
-    public ResponseEntity<?> deleteRoleById(@PathVariable long roleid)
+    @DeleteMapping("/role/{id}")
+    public ResponseEntity<?> deleteRoleById(@PathVariable long id)
     {
-        roleService.delete(roleid);
+        roleService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

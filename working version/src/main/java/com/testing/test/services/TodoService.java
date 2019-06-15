@@ -1,10 +1,10 @@
-package com.lambdaschool.todos.services;
+package com.testing.test.services;
 
-import com.lambdaschool.todos.models.Todo;
+import com.testing.test.models.Todo;
 
 import java.util.List;
 
-public interface ToDoService {
+public interface TodoService {
 
     List<Todo> findAll();
 

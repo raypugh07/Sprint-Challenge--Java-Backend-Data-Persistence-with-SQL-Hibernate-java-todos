@@ -1,8 +1,7 @@
-package com.lambdaschool.todos.controllers;
+package com.testing.test.controllers;
 
-
-import com.lambdaschool.todos.models.Todo;
-import com.lambdaschool.todos.services.ToDoService;
+import com.testing.test.models.Todo;
+import com.testing.test.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,15 +16,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/todos")
-public class TodosController
+public class TodoController
 {
-    @Autowired
-    ToDoService toDoService;
+   @Autowired
+    TodoService todoService;
 
     @GetMapping(value = "/todos", produces = {"application/json"})
     public ResponseEntity<?> listAllTodos()
     {
-        List<Todo> allTodos = toDoService.findAll();
+        List<Todo> allTodos = todoService.findAll();
         return new ResponseEntity<>(allTodos, HttpStatus.OK);
     }
 
@@ -33,7 +32,7 @@ public class TodosController
     @GetMapping(value = "/todo/{todoid}", produces = {"application/json"})
     public ResponseEntity<?> getTodo(@PathVariable Long todoid)
     {
-        Todo q = toDoService.findTodoById(todoid);
+        Todo q = todoService.findTodoById(todoid);
         return new ResponseEntity<>(q, HttpStatus.OK);
     }
 
@@ -41,7 +40,7 @@ public class TodosController
     @GetMapping(value = "/username/{userName}", produces = {"application/json"})
     public ResponseEntity<?> findIdByUserName(@PathVariable String userName)
     {
-        List<Todo> theQuotes = toDoService.findByUserName(userName);
+        List<Todo> theQuotes = todoService.findByUserName(userName);
         return new ResponseEntity<>(theQuotes, HttpStatus.OK);
     }
 
@@ -50,7 +49,7 @@ public class TodosController
     @PostMapping(value = "/todo")
     public ResponseEntity<?> addNewTodo(@Valid @RequestBody Todo newTodo) throws URISyntaxException
     {
-        newTodo = toDoService.save(newTodo);
+        newTodo = todoService.save(newTodo);
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
@@ -68,7 +67,7 @@ public class TodosController
     @DeleteMapping("/todo/{todoid}")
     public ResponseEntity<?> deleteTodoById(@PathVariable long todoid)
     {
-        toDoService.delete(todoid);
+        todoService.delete(todoid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

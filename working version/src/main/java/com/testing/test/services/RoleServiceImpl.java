@@ -1,8 +1,9 @@
-package com.lambdaschool.todos.services;
+package com.testing.test.services;
 
 
-import com.lambdaschool.todos.models.Role;
-import com.lambdaschool.todos.repository.RoleRepository;
+import com.testing.test.models.Role;
+import com.testing.test.repository.RoleRepository;
+import com.testing.test.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,17 +28,17 @@ public class RoleServiceImpl implements RoleService
 
 
     @Override
-    public Role findRoleById(long roleid)
+    public Role findRoleById(long id)
     {
-        return rolerepos.findById(roleid).orElseThrow(() -> new EntityNotFoundException(Long.toString(roleid)));
+        return rolerepos.findById(id).orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
     }
 
 
     @Override
-    public void delete(long roleid)
+    public void delete(long id)
     {
-        rolerepos.findById(roleid).orElseThrow(() -> new EntityNotFoundException(Long.toString(roleid)));
-        rolerepos.deleteById(roleid);
+        rolerepos.findById(id).orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
+        rolerepos.deleteById(id);
     }
 
 
