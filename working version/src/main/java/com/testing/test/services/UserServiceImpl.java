@@ -1,6 +1,7 @@
 package com.testing.test.services;
 
 
+import com.testing.test.models.Todo;
 import com.testing.test.models.User;
 import com.testing.test.models.UserRoles;
 import com.testing.test.repository.RoleRepository;
@@ -81,10 +82,10 @@ public class UserServiceImpl implements UserDetailsService, UserService
         }
         newUser.setUserRoles(newRoles);
 
-        /*for (Quote q : user.getQuotes())
+        for (Todo q : user.getTodos())
         {
-            newUser.getQuotes().add( new Quote(q.getQuote(), newUser));
-        }*/
+            newUser.getTodos().add( new Todo(q.getTodo(),q.getDatestarted(),q.isCompleted(), newUser));
+        }
 
         return userrepos.save(newUser);
     }
@@ -124,13 +125,13 @@ public class UserServiceImpl implements UserDetailsService, UserService
                     }
                 }
 
-              /*  if (user.getQuotes().size() > 0)
+                if (user.getTodos().size() > 0)
                 {
-                    for (Quote q : user.getQuotes())
+                    for (Todo q : user.getTodos())
                     {
-                        currentUser.getQuotes().add( new Quote(q.getQuote(), currentUser));
+                        currentUser.getTodos().add( new Todo(q.getTodo(),q.getDatestarted(),q.isCompleted(), currentUser));
                     }
-                }*/
+                }
                 return userrepos.save(currentUser);
             }
             else

@@ -63,6 +63,11 @@ public class TodoController
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
+    @PutMapping(value = "/todos/todoid/{todoid}", produces = {"application/json"}, consumes = {"application/json"})
+    public ResponseEntity<?> updateTodo(@PathVariable long todoid, @RequestBody Todo todo){
+        return new ResponseEntity<>(todoService.update(todo, todoid), HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/todo/{todoid}")
     public ResponseEntity<?> deleteTodoById(@PathVariable long todoid)
